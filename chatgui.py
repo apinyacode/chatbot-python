@@ -79,16 +79,16 @@ def send():
         ChatLog.config(foreground="#442265", font=("Verdana", 12 ))
     
         res = chatbot_response(msg)
-        ChatLog.insert(END, "Bot: " + res + '\n\n')
+        ChatLog.insert(END, "Groot: " + res + '\n\n')
             
         ChatLog.config(state=DISABLED)
         ChatLog.yview(END)
  
 
 base = Tk()
-base.title("Hello")
+base.title("I am Groot")
 base.geometry("400x500")
-base.resizable(width=FALSE, height=FALSE)
+base.resizable(width=TRUE, height=TRUE)
 
 #Create Chat window
 ChatLog = Text(base, bd=0, bg="white", height="8", width="50", font="Arial",)
@@ -100,7 +100,7 @@ scrollbar = Scrollbar(base, command=ChatLog.yview, cursor="heart")
 ChatLog['yscrollcommand'] = scrollbar.set
 
 #Create Button to send message
-SendButton = Button(base, font=("Verdana",12,'bold'), text="Send", width="12", height=5,
+SendButton = Button(base, font=("Verdana",9,'bold'), text="Send", width="12", height=5,
                     bd=0, bg="#32de97", activebackground="#3c9d9b",fg='#ffffff',
                     command= send )
 
