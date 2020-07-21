@@ -10,7 +10,7 @@ import json
 import random
 intents = json.loads(open('intents.json').read())
 words = pickle.load(open('words.pkl','rb'))
-classes = pickle.load(open('classes.pkl','rb'))
+labels = pickle.load(open('labels.pkl','rb'))
 
 
 def clean_up_sentence(sentence):
@@ -46,7 +46,7 @@ def predict_class(sentence, model):
     results.sort(key=lambda x: x[1], reverse=True)
     return_list = []
     for r in results:
-        return_list.append({"intent": classes[r[0]], "probability": str(r[1])})
+        return_list.append({"intent": labels[r[0]], "probability": str(r[1])})
     return return_list
 
 def getResponse(ints, intents_json):
