@@ -29,15 +29,25 @@
          "responses":["I am Groot", "I am the DevOps Squad chatbot, I am here to help", "My developers are my masters"],
          "context": [""]
         },
-        {"tag": "JIRA",
+        {"tag": "jira",
          "patterns": ["What is JIRA?", "Where can I find information about JIRA","How do I get started using JIRA"],
          "responses": ["Go to this wiki page https://JIRAJIRAJIRA"],
          "context_filter": ["HowTo"]
         },
-        {"tag": "Git",
+        {"tag": "git",
          "patterns": ["What is Git?", "Where can I find information about Git","How do I get started using Git"],
-         "responses": ["Go to this wiki page https://GitGitGit"],
+         "responses": ["Is this what you are looking for https://GitGitGit ?"],
          "context_filter": ["HowTo"]
+        },
+        {"tag": "esclate",
+         "patterns": ["You are stupid", "This is not helping","I need more help", "I need to talk to someone","I want to raise JIRA ticket"],
+         "responses": ["Would you like to raise a JIRA ticket for more help? Ans: [Yes raise JIRA/ Bye]"],
+         "context_set": ["esclation"]
+        },
+        {"tag": "ticket",
+         "patterns": ["Yes, raise JIRA","I want to raise JIRA", "How can I raise JIRA"],
+         "responses": ["Support JIRA has been raised, and here's the link "],
+         "context_filter": ["esclation"]
         }
    ]
 }
