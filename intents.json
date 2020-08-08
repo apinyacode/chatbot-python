@@ -20,14 +20,24 @@
          "context": [""]
         },
         {"tag": "options",
-         "patterns": ["How you could help me?", "What you can do?", "What help you provide?", "How you can be helpful?", "What support is offered"],
+         "patterns": ["How you could help me", "What you can do", "What help you provide", "How you can be helpful", "What support is offered"],
          "responses": ["I can guide you throug DevOps topics", "Offer support for DevOps implementation issues", "Show you a list of HowTo topics"],
-         "context": [""]
+         "context_set": ["HowTo"]
         },
         {"tag": "about",
-         "patterns":["Who are you?", "Who is Groot?","Who is your master?"],
+         "patterns":["Who are you", "Who is Groot","Who is your master"],
          "responses":["I am Groot", "I am the DevOps Squad chatbot, I am here to help", "My developers are my masters"],
          "context": [""]
+        },
+        {"tag": "JIRA",
+         "patterns": ["What is JIRA?", "Where can I find information about JIRA","How do I get started using JIRA"],
+         "responses": ["Go to this wiki page https://JIRAJIRAJIRA"],
+         "context_filter": ["HowTo"]
+        },
+        {"tag": "Git",
+         "patterns": ["What is Git?", "Where can I find information about Git","How do I get started using Git"],
+         "responses": ["Go to this wiki page https://GitGitGit"],
+         "context_filter": ["HowTo"]
         }
    ]
 }

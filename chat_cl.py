@@ -11,7 +11,7 @@ import random
 intents = json.loads(open('intents.json').read())
 words = pickle.load(open('words.pkl','rb'))
 labels = pickle.load(open('labels.pkl','rb'))
-#context = {}
+context = {}
 
 def clean_up_sentence(sentence):
     # tokenize the pattern - split words into array
@@ -49,18 +49,28 @@ def predict_class(sentence, model):
         return_list.append({"intent": labels[r[0]], "probability": str(r[1])})
     return return_list
 
-def getResponse(ints, intents_json):
+def getResponse(ints, intents_json, user_id, show_details):
     tag = ints[0]['intent']
     list_of_intents = intents_json['intents']
     for i in list_of_intents:
         if(i['tag']== tag):
+            #result = random.choice(i['responses']) 
+            # set context for this intent if necessary
+            if 'context_set' in i:
+                if show_details: print ('context:', i['context_set'])
+                context[user_id] = i['context_set']
+
+            # check if this intent is contextual and applies to this user's conversation
+            if not 'context_filter' in i or \
+                (user_id in context and 'context_filter' in i and i['context_filter'] == context[user_id]):
+                if show_details: print ('tag:', i['tag'])
+                # a random response from the intent
             result = random.choice(i['responses'])
-            break
     return result
 
 def chatbot_response(msg):
     ints = predict_class(msg, model)
-    res = getResponse(ints, intents)
+    res = getResponse(ints, intents,'123',True)
     return res
 
 
